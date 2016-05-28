@@ -1,6 +1,15 @@
 {% include 'blog/includes/head.html' %}
 {% include 'blog/includes/nav.html' %}
 
-<h1>Blog Index</h1>
+<div class="container">
+    <h1>Blog Index</h1>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <a href="{% url 'blog:view' post.id %}">{{post.title}}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
 
 {% include 'blog/includes/foot.html' %}

@@ -1,0 +1,13 @@
+{% include 'blog/includes/head.html' %}
+{% include 'blog/includes/nav.html' %}
+
+<div class="container">
+    {% if post %}
+        <h1>{{ post.title }}</h1>
+        {% autoescape on %}
+            {{ post.content }}
+        {% endautoescape %}
+    {% endif %}
+</div>
+
+{% include 'blog/includes/foot.html' %}
