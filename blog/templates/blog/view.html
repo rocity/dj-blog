@@ -2,12 +2,23 @@
 {% include 'blog/includes/nav.html' %}
 
 <div class="container">
-    {% if post %}
-        <h1>{{ post.title }}</h1>
-        {% autoescape on %}
-            {{ post.content }}
-        {% endautoescape %}
-    {% endif %}
+    <div class="col-sm-8">
+        <div class="row">
+            {% if post %}
+                <h1>{{ post.title }}</h1>
+                <p>
+                    <span>
+                    {{ post.created|date:"M d, Y h:ia" }} by
+                    {{ post.owner }}
+                    </span>
+                </p>
+                {% autoescape on %}
+                    {{ post.content }}
+                {% endautoescape %}
+            {% endif %}
+        </div>
+    </div>
+    {% include 'blog/includes/sidebar.html' %}
 </div>
 
 {% include 'blog/includes/foot.html' %}

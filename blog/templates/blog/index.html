@@ -2,14 +2,21 @@
 {% include 'blog/includes/nav.html' %}
 
 <div class="container">
-    <h1>Blog Index</h1>
-    <ul>
-        {% for post in posts %}
-            <li>
-                <a href="{% url 'blog:view' post.id %}">{{post.title}}</a>
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="col-sm-8">
+        <div class="row">
+            <h1>Blog Index</h1>
+            {% for post in posts %}
+                <div class="col-xs-6 col-sm-4">
+                    <h2>{{ post.title }}</h2>
+                    <p>{{ post.content|truncatechars:100 }}</p>
+                    <a href="{% url 'blog:view' post.id %}" class="btn btn-default">
+                        Read More...
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% include 'blog/includes/sidebar.html' %}
 </div>
 
 {% include 'blog/includes/foot.html' %}
