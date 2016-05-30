@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
 
 from .models import Post, Comment
+from .forms import CommentForm
 
 # Create your views here.
 def index(request):
@@ -12,7 +14,20 @@ def view(request, post_id):
     comments = Comment.objects.filter(
         status__exact='published'
         ).order_by('-created')[:5]
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+
+        # validate form
+        if form.is_valid():
+            return HttpResponse('valid form %s' % form)
+        else:
+            return HttpResponse('inavalid form %s' % form)
+    else:
+        form = CommentForm()
+
     return render(request, 'blog/view.html', {
         'post': post,
-        'comments': comments
+        'comments': comments,
+        'commentform': form
         })
