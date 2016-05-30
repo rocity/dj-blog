@@ -18,7 +18,14 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Login</a></li>
+
+                {% if user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'blog:profile' %}">Your Profile</a>
+                    </li>
+                {% else %}
+                    <li><a href="#">Login</a></li>
+                {% endif %}
             </ul>
         </div><!-- /.navbar-collapse -->
     </div>

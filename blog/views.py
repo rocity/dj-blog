@@ -32,3 +32,6 @@ def view(request, post_id):
         'comments': comments,
         'commentform': form
         })
+
+def profile(request):
+    return render(request, 'blog/profile.html', {})
