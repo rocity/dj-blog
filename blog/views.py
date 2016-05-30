@@ -20,9 +20,10 @@ def view(request, post_id):
 
         # validate form
         if form.is_valid():
-            return HttpResponse('valid form %s' % form)
-        else:
-            return HttpResponse('inavalid form %s' % form)
+            obj = form.save(commit=False)
+            obj.post = Post.objects.get(pk=post_id)
+            obj.save()
+
     else:
         form = CommentForm()
 
