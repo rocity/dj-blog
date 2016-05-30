@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 
-from .models import Post
+from .models import Post, Comment
 
 # Create your views here.
 def index(request):
@@ -9,4 +9,10 @@ def index(request):
 
 def view(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
-    return render(request, 'blog/view.html', {'post': post})
+    comments = Comment.objects.filter(
+        status__exact='published'
+        ).order_by('-created')[:5]
+    return render(request, 'blog/view.html', {
+        'post': post,
+        'comments': comments
+        })

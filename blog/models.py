@@ -58,8 +58,8 @@ class Comment(models.Model):
                                         auto_now_add=True,
                                         blank=True)
     email = models.EmailField()
-    url = models.URLField()
-    owner = models.ForeignKey(User, null=True)
+    url = models.URLField(blank=True)
+    owner = models.ForeignKey(User, null=True, blank=True)
 
     def __str__(self):
         return self.content
