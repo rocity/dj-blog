@@ -40,6 +40,12 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    def get_post_comments(self):
+        return Comment.objects.filter(
+            status__exact='published',
+            post__id__exact=self.pk
+        ).order_by('-created')[:5]
+
 class Comment(models.Model):
     PUBLISHED = 'published'
     HIDDEN = 'hidden'

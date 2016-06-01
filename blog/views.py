@@ -12,9 +12,7 @@ def index(request):
 
 def view(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
-    comments = Comment.objects.filter(
-        status__exact='published'
-        ).order_by('-created')[:5]
+    comments = post.get_post_comments()
 
     if request.method == 'POST':
         form = CommentForm(request.POST)
