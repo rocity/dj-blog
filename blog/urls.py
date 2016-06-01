@@ -8,5 +8,6 @@ urlpatterns = [
     # ex: /polls/5/
     url(r'^(?P<post_id>[0-9]+)/$', views.view, name='view'),
     url(r'^profile/$', views.profile, name='profile'),
+    url(r'^new/$', views.newpost, name='new'),
 
 ]

@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
+from django.contrib.auth.models import User
 
 from .models import Post, Comment
-from .forms import CommentForm
+from .forms import CommentForm, PostForm
 
 # Create your views here.
 def index(request):
@@ -36,3 +37,18 @@ def view(request, post_id):
 def profile(request):
     current_user = request.user
     return render(request, 'blog/profile.html', {'user': current_user})
+
+def newpost(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            user = request.user
+
+            obj = form.save(commit=False)
+            obj.owner = User.objects.get(pk=user.id)
+            obj.save()
+    else:
+        form = PostForm()
+    return render(request, 'blog/newpost.html', {
+        'postform': form
+        })

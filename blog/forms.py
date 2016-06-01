@@ -1,6 +1,5 @@
 from django import forms
 from .models import Comment, Post
-from django.contrib.auth.models import User
 
 class CommentForm(forms.ModelForm):
 
@@ -12,4 +11,17 @@ class CommentForm(forms.ModelForm):
             'email': forms.TextInput(attrs={'class': 'form-control'}),
             'content': forms.Textarea(attrs={'class': 'form-control'}),
             'url': forms.TextInput(attrs={'class': 'form-control'})
+        }
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        exclude = ('owner', 'created', 'published')
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'content': forms.Textarea(attrs={'class': 'form-control'}),
+            'tags': forms.SelectMultiple(attrs={
+                'class': 'form-control'
+                }),
+            'status': forms.Select(attrs={'class': 'form-control'}),
         }
