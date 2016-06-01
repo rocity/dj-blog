@@ -34,4 +34,5 @@ def view(request, post_id):
         })
 
 def profile(request):
-    return render(request, 'blog/profile.html', {})
+    current_user = request.user
+    return render(request, 'blog/profile.html', {'user': current_user})
