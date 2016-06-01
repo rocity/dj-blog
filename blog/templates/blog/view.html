@@ -50,7 +50,16 @@
                             </a>
                         </div>
                         <div class="col-sm-10">
-                            <p><strong>{{ comment.email }}</strong></p>
+                            {% if comment.name %}
+                                <p>
+                                    <strong>{{ comment.name }}</strong>
+                                    <small>
+                                        {{comment.created}}
+                                    </small>
+                                </p>
+                            {% else %}
+                                <p><strong>Anonymous</strong></p>
+                            {% endif %}
                             {{ comment.content }}
                         </div>
                     </div>

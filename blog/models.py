@@ -57,7 +57,11 @@ class Comment(models.Model):
     created = models.DateTimeField('Date Created',
                                         auto_now_add=True,
                                         blank=True)
-    email = models.EmailField()
+    name = models.CharField(blank=False,
+                            null=False,
+                            max_length=50,
+                            default='Anonymous')
+    email = models.EmailField(null=True, blank=True)
     url = models.URLField(blank=True)
     owner = models.ForeignKey(User, null=True, blank=True)
 
