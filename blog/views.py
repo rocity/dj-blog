@@ -62,3 +62,10 @@ def postcomments(request):
         'comments': comments,
         'posts': posts
         })
+
+def posts_by_tag(request, slug):
+    posts = Post.objects.filter(tags__name__iexact=slug)
+    return render(request, 'blog/posts_by_tag.html', {
+        'posts': posts,
+        'slug': slug
+        })

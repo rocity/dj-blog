@@ -9,6 +9,6 @@ urlpatterns = [
     url(r'^(?P<post_id>[0-9]+)/$', views.view, name='view'),
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^new/$', views.newpost, name='new'),
-    url(r'^comments/$', views.postcomments, name='postcomments'),
+    url(r'^posts/tag/(?P<slug>[\w-]+)$', views.posts_by_tag, name='postsbytag'),
 
 ]

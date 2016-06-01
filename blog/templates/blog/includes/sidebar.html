@@ -4,5 +4,17 @@
             <strong>About</strong>
             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
         </div>
+        <hr>
+        <div class="well">
+            <strong>Tags</strong>
+            <ul class="list-inline">
+                <li>
+                    <a class="label label-info" href="{% url 'blog:postsbytag' 'technology' %}">Tech</a>
+                </li>
+                <li>
+                    <a class="label label-info" href="{% url 'blog:postsbytag' 'lifestyle' %}">Lifestyle</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>

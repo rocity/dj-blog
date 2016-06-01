@@ -1,0 +1,25 @@
+{% load staticfiles %}
+{% include 'blog/includes/head.html' %}
+{% include 'blog/includes/nav.html' %}
+
+<div class="container">
+    <div class="col-sm-8">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Posts with tag <strong>{{slug}}</strong></h1>
+            </div>
+            {% for post in posts %}
+                <div class="col-sm-12">
+                    <h2>{{post.title}}</h2>
+                    <p>{{post.content|truncatewords:50}}</p>
+                    <span>
+                        <a class="btn btn-info" href="{% url 'blog:view' post.id %}">View Post</a>
+                    </span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% include 'blog/includes/sidebar.html' %}
+</div>
+
+{% include 'blog/includes/foot.html' %}
