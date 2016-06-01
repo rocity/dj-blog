@@ -1,0 +1,66 @@
+{% load staticfiles %}
+{% include 'blog/includes/head.html' %}
+{% include 'blog/includes/nav.html' %}
+
+<div class="container">
+    <div class="col-sm-8">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Comments on Your Posts</h1>
+            </div>
+            <div class="col-sm-12">
+                <div
+                    class="panel-group"
+                    id="commentaccordion"
+                    role="tablist"
+                    aria-multiselectable="true">
+                    {% for comment_cluster in comments %}
+                        {% for comment in comment_cluster %}
+                            <div
+                                class="panel panel-default comment-{{comment.status}}">
+                                <div
+                                    class="panel-heading comment-heading"
+                                    role="tab"
+                                    id="heading_{{comment.id}}">
+                                    <a
+                                        role="button"
+                                        data-toggle="collapse"
+                                        data-parent="#commentaccordion"
+                                        href="#collapse_{{comment.id}}"
+                                        aria-expanded="true"
+                                        aria-controls="collapse_{{comment.id}}">
+                                        <strong>{{comment.name}}</strong> commented on <em>{{comment.post}}</em>
+                                    </a>
+                                </div>
+                                <div
+                                    id="collapse_{{comment.id}}"
+                                    class="panel-collapse collapse"
+                                    role="tabpanel"
+                                    aria-labelledby="heading_{{comment.id}}">
+                                    <div class="panel-body">
+                                        <small>
+                                            {{comment.created}} -
+                                            {{comment.status|upper}}
+                                        </small>
+                                        <p>
+                                            {{comment.name}}'s EMAIL: {{comment.email}}
+                                        </p>
+                                        <p>
+                                            {{comment.name}}'s URL: {{comment.url}}
+                                        </p>
+                                        <span><strong>Comment:</strong></span>
+                                        <p>{{comment}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'blog/includes/sidebar.html' %}
+</div>
+
+{% include 'blog/includes/foot.html' %}

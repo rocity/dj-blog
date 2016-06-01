@@ -18,3 +18,20 @@ footer {
     background-color: #f9f9f9;
     border-top: 1px solid #e5e5e5;
 }
+
+.panel.comment-published {
+    border-color: #48CFAD;
+}
+.panel.comment-deleted {
+    border-color: #BF263C;
+}
+.panel.comment-hidden {
+    border-color: #434A54;
+}
+
+.panel .comment-heading a {
+    color: #323133;
+}
+.panel .comment-heading a:focus {
+    outline: none;
+}

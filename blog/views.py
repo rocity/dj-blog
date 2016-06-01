@@ -12,7 +12,7 @@ def index(request):
 
 def view(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
-    comments = post.get_post_comments()
+    comments = post.get_post_comments_published()
 
     if request.method == 'POST':
         form = CommentForm(request.POST)
@@ -49,4 +49,16 @@ def newpost(request):
         form = PostForm()
     return render(request, 'blog/newpost.html', {
         'postform': form
+        })
+
+def postcomments(request):
+    user = request.user
+    posts = Post.objects.filter(owner__id__exact=user.id)
+    comments = []
+    for post in posts:
+        post_comments = post.get_post_comments_all()
+        comments.append(post_comments)
+    return render(request, 'blog/postcomments.html', {
+        'comments': comments,
+        'posts': posts
         })
