@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^(?P<post_id>[0-9]+)/$', views.view, name='view'),
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^profile/posts/$', views.user_posts, name='user_posts'),
+    url(r'^commentstatus/$', views.change_comment_status, name='change_comment_status'),
 
     url(r'^comments/$', views.postcomments, name='postcomments'),
     url(r'^new/$', views.newpost, name='new'),

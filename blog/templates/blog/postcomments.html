@@ -50,6 +50,44 @@
                                         </p>
                                         <span><strong>Comment:</strong></span>
                                         <p>{{comment}}</p>
+                                        <hr>
+                                        <span>Comment Status</span><br />
+                                        <div
+                                            class="btn-group"
+                                            role="group"
+                                            aria-label="comment_status">
+                                            <input
+                                                type="hidden"
+                                                value="{% url 'blog:change_comment_status' %}"
+                                                id="comment_status_{{comment.id}}">
+                                            <input
+                                                type="hidden"
+                                                name="csrfmiddlewaretoken"
+                                                value="{{ csrf_token }}"
+                                                id="comment_csrf_{{comment.id}}">
+
+                                            <button
+                                                type="button"
+                                                data-stype="hidden"
+                                                data-cid="{{comment.id}}"
+                                                class="btn comment-action btn-default">
+                                                Hidden
+                                            </button>
+                                            <button
+                                                type="button"
+                                                data-stype="published"
+                                                data-cid="{{comment.id}}"
+                                                class="btn comment-action btn-success">
+                                                Published
+                                            </button>
+                                            <button
+                                                type="button"
+                                                data-stype="deleted"
+                                                data-cid="{{comment.id}}"
+                                                class="btn comment-action btn-danger">
+                                                Deleted
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

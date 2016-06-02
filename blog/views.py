@@ -6,6 +6,8 @@ from django.contrib.auth import authenticate, login, logout
 from .models import Post, Comment
 from .forms import CommentForm, PostForm, LoginForm
 
+import json
+
 # Create your views here.
 def index(request):
     latest_blog_posts = Post.objects.order_by('-created')[:5]
@@ -95,3 +97,18 @@ def user_posts(request):
     user = request.user
     posts = Post.objects.filter(owner__id__exact=user.id)
     return render(request, 'blog/user_posts.html', {'posts': posts})
+
+def change_comment_status(request):
+    """
+    Accept AJAX request
+    I have no idea if this is a good practice or not. /facepalm
+    """
+    ret = json.dumps({'status': '0'})
+    if request.method == 'POST':
+        comment_id = request.POST.get('comment_id')
+        status = request.POST.get('status')
+        comment = Comment.objects.get(pk=comment_id)
+        comment.status = status
+        comment.save()
+        ret = json.dumps({'status': '1'})
+    return HttpResponse(ret)
