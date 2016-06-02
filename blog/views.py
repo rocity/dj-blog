@@ -90,3 +90,8 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/blog')
+
+def user_posts(request):
+    user = request.user
+    posts = Post.objects.filter(owner__id__exact=user.id)
+    return render(request, 'blog/user_posts.html', {'posts': posts})

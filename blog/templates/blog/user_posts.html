@@ -1,0 +1,47 @@
+{% load staticfiles %}
+{% include 'blog/includes/head.html' %}
+{% include 'blog/includes/nav.html' %}
+
+<div class="container">
+    <div class="col-sm-8">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Your Posts</h1>
+            </div>
+            <div class="col-sm-12">
+                {% for post in posts %}
+                    <div class="col-md-10 user-post">
+                        <h1>{{post.title}}</h1>
+                        <img src="{% static "blog/img/3.png" %}" alt="post img" class="pull-left img-responsive thumb">
+
+                        <em>
+                            <small>posted: {{post.created}}&nbsp;</small>
+                            <small>
+                                author: <strong>{{post.owner}}</strong>
+                            </small>
+                        </em>
+                        <article>
+                            <p>
+                                {{post.content|truncatewords:50}}
+                            </p>
+                         </article>
+                        <a
+                            class="btn btn-primary pull-right"
+                            href="{% url 'blog:view' post.id %}">
+                            EDIT POST
+                        </a>
+                        <a
+                            class="btn btn-primary pull-right"
+                            href="{% url 'blog:view' post.id %}">
+                            READ MORE
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+    {% include 'blog/includes/sidebar.html' %}
+</div>
+
+{% include 'blog/includes/foot.html' %}

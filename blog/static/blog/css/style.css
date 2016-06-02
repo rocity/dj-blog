@@ -35,3 +35,14 @@ footer {
 .panel .comment-heading a:focus {
     outline: none;
 }
+
+.user-post {
+    border-bottom: 1px solid #999;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.user-post .thumb {
+    max-width: 100px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
