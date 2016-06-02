@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 
 from .models import Post, Comment
-from .forms import CommentForm, PostForm
+from .forms import CommentForm, PostForm, LoginForm
 
 # Create your views here.
 def index(request):
@@ -69,3 +70,23 @@ def posts_by_tag(request, slug):
         'posts': posts,
         'slug': slug
         })
+
+def user_login(request):
+    form = LoginForm()
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect('/blog')
+            else:
+                return HttpResponse('Your account is not activated')
+    else:
+        form = LoginForm()
+    return render(request, 'blog/login.html', {'loginform': form})
+
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect('/blog')
