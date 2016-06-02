@@ -9,6 +9,17 @@
                 <div class="col-xs-6 col-sm-4">
                     <h2>{{ post.title }}</h2>
                     <p>{{ post.content|truncatechars:100 }}</p>
+                    <ul class="list-inline">
+                        {% for tag in post.tags.all %}
+                            <li>
+                                <a
+                                    href="{% url 'blog:postsbytag' tag %}"
+                                    class="label label-info">
+                                    {{tag}}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
                     <a href="{% url 'blog:view' post.id %}" class="btn btn-default">
                         Read More...
                     </a>
