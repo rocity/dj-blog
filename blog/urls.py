@@ -12,6 +12,8 @@ urlpatterns = [
 
     url(r'^comments/$', views.postcomments, name='postcomments'),
     url(r'^new/$', views.newpost, name='new'),
+    url(r'^post/edit/(?P<post_id>[0-9]+)/$', views.edit_post, name='edit_post'),
+
     url(r'^posts/tag/(?P<slug>[\w-]+)$', views.posts_by_tag, name='postsbytag'),
     url(r'^login/$', views.user_login, name='user_login'),
     url(r'^logout/$', views.user_logout, name='user_logout')

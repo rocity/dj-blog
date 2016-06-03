@@ -17,8 +17,9 @@
                         <em>
                             <small>posted: {{post.created}}&nbsp;</small>
                             <small>
-                                author: <strong>{{post.owner}}</strong>
+                                author: <strong>{{post.owner}}&nbsp;</strong>
                             </small>
+                            <small class="label label-default">{{post.status}}</small>
                         </em>
                         <article>
                             <p>
@@ -27,7 +28,7 @@
                          </article>
                         <a
                             class="btn btn-primary pull-right"
-                            href="{% url 'blog:view' post.id %}">
+                            href="{% url 'blog:edit_post' post.id %}">
                             EDIT POST
                         </a>
                         <a

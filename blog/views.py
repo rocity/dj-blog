@@ -54,6 +54,20 @@ def newpost(request):
         'postform': form
         })
 
+def edit_post(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    form = PostForm(request.POST or None, instance=post)
+    success = False
+    if form.is_valid():
+        form.save()
+        success = True
+
+    return render(request, 'blog/edit_post.html', {
+        'editform': form,
+        'success': success,
+        'post_id': post_id
+        })
+
 def postcomments(request):
     user = request.user
     posts = Post.objects.filter(owner__id__exact=user.id)

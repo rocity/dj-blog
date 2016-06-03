@@ -1,0 +1,31 @@
+{% load staticfiles %}
+{% include 'blog/includes/head.html' %}
+{% include 'blog/includes/nav.html' %}
+
+<div class="container">
+    <div class="col-sm-8">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Edit Post</h1>
+            </div>
+            <div class="col-sm-12">
+                {% if success %}
+                    <div class="alert alert-success">
+                        <span>
+                            Post has been saved. View it <a href="{% url 'blog:view' post_id %}">here</a>.
+                        </span>
+                    </div>
+                {% endif %}
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{editform.as_p}}
+                    <button class="btn btn-primary" type="submit">Save</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    {% include 'blog/includes/sidebar.html' %}
+</div>
+
+{% include 'blog/includes/foot.html' %}
