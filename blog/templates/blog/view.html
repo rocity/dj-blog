@@ -14,7 +14,7 @@
                     </span>
                 </p>
                 {% autoescape on %}
-                    {{ post.content }}
+                    {{ post.content|linebreaksbr }}
                 {% endautoescape %}
                 <hr>
                 Tags:
@@ -60,7 +60,7 @@
                             {% else %}
                                 <p><strong>Anonymous</strong></p>
                             {% endif %}
-                            {{ comment.content }}
+                            {{ comment.content|linebreaksbr }}
                         </div>
                     </div>
                 {% endfor %}
