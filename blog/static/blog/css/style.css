@@ -46,3 +46,10 @@ footer {
     margin-right: 10px;
     margin-bottom: 10px;
 }
+
+.errorlist {
+    padding: 0;
+    color: red;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
